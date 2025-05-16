@@ -36,8 +36,20 @@ function Home() {
     setInputName("");
   };
 
+  function handleToggleTaskComplete(toggledTask) {
+    setTasks((tasks) =>
+      tasks.map((task) =>
+        task === toggledTask ? { ...task, completed: !task.completed } : task
+      )
+    );
+  }
+
+  function handleAddTask(newTask) {
+    setTasks((tasks) => [...tasks, newTask]);
+  }
+
   return (
-    <div className="flex min-h-screen bg-gray-100 relative">
+    <div className="flex h-screen overflow-hidden bg-gray-100">
       {/* Persistent background gradient */}
       <DashboardBackground />
 
@@ -71,7 +83,12 @@ function Home() {
                 </button>
               </form>
             ) : (
-              <DashboardOverview name={name} tasks={tasks} />
+              <DashboardOverview
+                name={name}
+                tasks={tasks}
+                handleToggleTaskCompleted={handleToggleTaskComplete}
+                handleAddTask={handleAddTask}
+              />
             )}
           </div>
         )}

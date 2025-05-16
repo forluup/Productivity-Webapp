@@ -80,8 +80,10 @@ function WeeklyCalendar({ tasks, selectedDate, onSelectDate }) {
         day: "numeric",
       });
       if (!map[dateStr]) map[dateStr] = {};
-      map[dateStr][task.time] = map[dateStr][task.time] || [];
-      map[dateStr][task.time].push(task);
+      const [hour] = task.time.split(":");
+      const hourKey = `${hour.padStart(2, "0")}:00`;
+      map[dateStr][hourKey] = map[dateStr][hourKey] || [];
+      map[dateStr][hourKey].push(task);
     }
     return map;
   }, [tasks]);

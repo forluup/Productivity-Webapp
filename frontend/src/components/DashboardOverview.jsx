@@ -5,7 +5,12 @@ import Clock from "./Clock";
 import QuoteWidget from "./QuoteWidget";
 import TodayTasksWidget from "./TodaysTasksWidget";
 
-function DashboardOverview({ name, tasks }) {
+function DashboardOverview({
+  name,
+  tasks,
+  handleToggleTaskCompleted,
+  handleAddTask,
+}) {
   return (
     <div className="flex flex-col items-center my-8">
       <WeatherWidget />
@@ -13,7 +18,11 @@ function DashboardOverview({ name, tasks }) {
         <Greeting name={name} />
         <Clock />
         <QuoteWidget />
-        <TodayTasksWidget tasks={tasks} />
+        <TodayTasksWidget
+          tasks={tasks}
+          onToggleComplete={handleToggleTaskCompleted}
+          onAddTask={handleAddTask}
+        />
       </div>
     </div>
   );

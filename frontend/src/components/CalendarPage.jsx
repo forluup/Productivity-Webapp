@@ -19,7 +19,7 @@ export default function CalendarPage({ tasks, setTasks }) {
 
   return (
     <div className="relative min-h-screen">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 pt-8">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
         <div className="flex-shrink-0 w-full md:w-2/3">
           <WeeklyCalendar
             tasks={tasks}
