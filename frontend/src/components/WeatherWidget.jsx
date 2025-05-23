@@ -5,12 +5,15 @@ export default function WeatherWidget() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Use environment variable for API base URL
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     async function fetchWeather() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch("/api/weather?city=Coquitlam");
+        const res = await fetch(`${apiUrl}/api/weather?city=Coquitlam`);
         if (!res.ok) throw new Error("Failed to fetch weather");
         const data = await res.json();
         setWeather(data);
@@ -21,7 +24,7 @@ export default function WeatherWidget() {
       }
     }
     fetchWeather();
-  }, []);
+  }, [apiUrl]);
 
   if (loading)
     return (

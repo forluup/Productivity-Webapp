@@ -6,12 +6,15 @@ export default function QuoteWidget() {
   const [error, setError] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
 
+  // Use environment variable for API base URL
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     async function fetchQuote() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch("/api/quote");
+        const res = await fetch(`${apiUrl}/api/quote`);
         if (!res.ok) throw new Error("Failed to fetch quote");
         const data = await res.json();
         const quote = data[0];
@@ -23,7 +26,7 @@ export default function QuoteWidget() {
       }
     }
     fetchQuote();
-  }, []);
+  }, [apiUrl]);
 
   // Trigger fade-in when quote is loaded
   useEffect(() => {
