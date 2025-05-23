@@ -150,26 +150,8 @@ function WeeklyCalendar({ tasks, selectedDate, onSelectDate }) {
     });
     return (
       <div>
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex items-center gap-2">
-            <button
-              className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200"
-              onClick={handlePrev}
-              aria-label="Previous Day"
-            >
-              &larr;
-            </button>
-            <h2 className="text-xl font-bold text-indigo-600">
-              Daily View: {formatDay(selectedDate)}
-            </h2>
-            <button
-              className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200"
-              onClick={handleNext}
-              aria-label="Next Day"
-            >
-              &rarr;
-            </button>
-          </div>
+        <div className="flex justify-center items-center mb-4">
+          <h2 className="text-xl font-bold text-indigo-600">Daily View</h2>
         </div>
         <table className="min-w-full border-collapse">
           <thead>
@@ -223,24 +205,8 @@ function WeeklyCalendar({ tasks, selectedDate, onSelectDate }) {
     });
     return (
       <div>
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex items-center gap-2">
-            <button
-              className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200"
-              onClick={handlePrev}
-              aria-label="Previous Week"
-            >
-              &larr;
-            </button>
-            <h2 className="text-xl font-bold text-indigo-600">Weekly View</h2>
-            <button
-              className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200"
-              onClick={handleNext}
-              aria-label="Next Week"
-            >
-              &rarr;
-            </button>
-          </div>
+        <div className="flex justify-center items-center mb-4">
+          <h2 className="text-xl font-bold text-indigo-600">Weekly View</h2>
         </div>
         <table className="min-w-full border-collapse">
           <thead>
@@ -328,26 +294,10 @@ function WeeklyCalendar({ tasks, selectedDate, onSelectDate }) {
     }
     return (
       <div>
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex items-center gap-2">
-            <button
-              className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200"
-              onClick={handlePrev}
-              aria-label="Previous Month"
-            >
-              &larr;
-            </button>
-            <h2 className="text-xl font-bold text-indigo-600">
-              {formatMonthYear(selectedDate)}
-            </h2>
-            <button
-              className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200"
-              onClick={handleNext}
-              aria-label="Next Month"
-            >
-              &rarr;
-            </button>
-          </div>
+        <div className="flex justify-center items-center mb-4">
+          <h2 className="text-xl font-bold text-indigo-600">
+            {formatMonthYear(selectedDate)}
+          </h2>
         </div>
         <table className="min-w-full border-collapse">
           <thead>
@@ -429,38 +379,43 @@ function WeeklyCalendar({ tasks, selectedDate, onSelectDate }) {
         ${fadeIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
       `}
     >
-      <div className="flex gap-2 mb-4">
+      <div className="flex justify-center gap-2 items-center mb-4">
+        {/* Left Arrow */}
         <button
-          className={`px-3 py-1 rounded ${
-            view === "daily"
-              ? "bg-indigo-500 text-white"
-              : "bg-slate-100 text-slate-700"
-          }`}
-          onClick={() => setView("daily")}
+          className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200"
+          onClick={handlePrev}
+          aria-label="Previous"
         >
-          Daily
+          &larr;
         </button>
+
+        {/* View Toggle Buttons */}
+        <div className="flex gap-2 items-center">
+          {["daily", "weekly", "monthly"].map((v) => (
+            <button
+              key={v}
+              className={`px-3 py-1 rounded capitalize ${
+                view === v
+                  ? "bg-indigo-600 text-white"
+                  : "bg-slate-100 hover:bg-slate-200"
+              }`}
+              onClick={() => setView(v)}
+            >
+              {v}
+            </button>
+          ))}
+        </div>
+
+        {/* Right Arrow */}
         <button
-          className={`px-3 py-1 rounded ${
-            view === "weekly"
-              ? "bg-indigo-500 text-white"
-              : "bg-slate-100 text-slate-700"
-          }`}
-          onClick={() => setView("weekly")}
+          className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200"
+          onClick={handleNext}
+          aria-label="Next"
         >
-          Weekly
-        </button>
-        <button
-          className={`px-3 py-1 rounded ${
-            view === "monthly"
-              ? "bg-indigo-500 text-white"
-              : "bg-slate-100 text-slate-700"
-          }`}
-          onClick={() => setView("monthly")}
-        >
-          Monthly
+          &rarr;
         </button>
       </div>
+
       {view === "daily" && renderDailyView()}
       {view === "weekly" && renderWeeklyView()}
       {view === "monthly" && renderMonthlyView()}

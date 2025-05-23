@@ -80,7 +80,7 @@ export default function TodayTasksWidget({
 
   return (
     <div
-      className="absolute bottom-0 left-60 border border-white/40 p-6 rounded-2xl text-blue-900 max-w-sm mx-auto my-4
+      className="absolute bottom-0 left-5 border border-white/40 p-6 rounded-2xl text-blue-900 max-w-sm mx-auto my-4
       transition-all duration-1500 ease-out transform shadow-lg
       hover:shadow-xl hover:scale-[1.02] backdrop-blur-md bg-white/40"
     >

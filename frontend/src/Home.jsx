@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import DashboardOverview from "./components/DashboardOverview";
 import CalendarPage from "./components/CalendarPage";
 import DashboardBackground from "./components/DashboardBackground";
+import DarkModeToggle from "./components/DarkModeToggle";
 
 // Helper to load tasks from localStorage
 function loadTasks() {
@@ -15,6 +16,11 @@ function Home() {
   const [tasks, setTasks] = useState(loadTasks());
   const [name, setName] = useState("");
   const [inputName, setInputName] = useState("");
+  const [darkMode, setDarkMode] = useState(() => {
+    // Persist dark mode in localStorage
+    const saved = localStorage.getItem("darkMode");
+    return saved ? JSON.parse(saved) : false;
+  });
 
   // Load name from localStorage on mount
   useEffect(() => {
@@ -26,6 +32,15 @@ function Home() {
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+    if (darkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   // Handle name submission
   const handleSubmitName = (e) => {
@@ -50,11 +65,11 @@ function Home() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100">
-      {/* Persistent background gradient */}
-      <DashboardBackground />
+      <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+      <DashboardBackground darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <Sidebar currentView={currentView} setCurrentView={setCurrentView} />
-      <main className="flex-1 p-8 pt-24">
+      <main className="flex-1 p-8 pt-24 relative">
         {currentView === "dashboard" && (
           <div className="max-w-4xl mx-auto">
             {!name ? (
