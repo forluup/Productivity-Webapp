@@ -48,7 +48,7 @@ export default function WeatherWidget() {
 
   return (
     <div className="absolute top-0 right-0 p-4">
-      <div className="backdrop-blur-md bg-white/30 rounded-2xl shadow-lg border border-white/30 px-4 py-2 flex items-center w-40 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300">
+      <div className="backdrop-blur-md bg-white/30 rounded-2xl shadow-lg border border-white/30 px-4 py-2 flex items-center hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 max-w-xs">
         <img
           src={iconUrl}
           alt={weather.weather[0].description}
@@ -58,7 +58,7 @@ export default function WeatherWidget() {
           <div className="text-xl font-bold text-blue-700">
             {Math.round(weather.main.temp)}°C
           </div>
-          <div className="text-xs text-blue-500 capitalize whitespace-nowrap truncate">
+          <div className="text-xs text-blue-500 capitalize">
             {weather.weather[0].description}
           </div>
           <div className="text-xs text-blue-400">{weather.name}</div>
