@@ -2,7 +2,7 @@
 
 A modern productivity web application featuring weather integration, built with React, Vite, and Express.
 
-Website Preview: https://dashboard.render.com/static/srv-d0ns8dqdbo4c73a7ktt0
+Website Preview: https://productivity-webapp-frontend.onrender.com
 
 ## Features
 
